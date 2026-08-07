@@ -1,8 +1,8 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-success">
+<nav class="navbar navbar-expand-lg site-navbar">
     <div class="container">
 
         {{-- Logo --}}
-        <a class="navbar-brand fw-bold" href="{{ url('/') }}">
+        <a class="navbar-brand fw-bold site-navbar-brand" href="{{ url('/') }}">
             AI Travel Guide
         </a>
 
@@ -19,21 +19,28 @@
 
                 {{-- 首頁 --}}
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/') }}">
+                    <a class="nav-link site-nav-link" href="{{ url('/') }}">
                         首頁
                     </a>
                 </li>
 
                 {{-- 景點列表 --}}
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/attractions') }}">
+                    <a class="nav-link site-nav-link" href="{{ url('/attractions') }}">
                         景點列表
+                    </a>
+                </li>
+
+                {{-- 景點統計 --}}
+                <li class="nav-item">
+                    <a class="nav-link site-nav-link" href="{{ url('/statistics') }}">
+                        景點統計
                     </a>
                 </li>
 
                 {{-- 管理 --}}
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/admin/attractions') }}">
+                    <a class="nav-link site-nav-link" href="{{ url('/admin/attractions') }}">
                         景點管理
                     </a>
                 </li>

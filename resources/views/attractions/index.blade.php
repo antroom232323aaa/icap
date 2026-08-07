@@ -4,23 +4,19 @@
 
 @section('content')
 
-    <div class="container py-5">
+    <div class="container py-5 attraction-page">
 
         {{-- 頁面標題 --}}
-        <div class="mb-5">
+        <div class="attraction-page-header">
 
             <h1>
                 景點列表
             </h1>
 
-            <p class="text-muted">
-                探索台灣各地農村美食與住宿景點。
-            </p>
-
         </div>
 
         {{-- 搜尋與篩選 --}}
-        <form method="GET" action="{{ url('/attractions') }}" class="mb-4">
+        <div class="attraction-filter-panel">
 
             <div class="row g-3">
 
@@ -30,14 +26,13 @@
                         關鍵字搜尋
                     </label>
 
-                    <input type="text" id="keyword" name="keyword" class="form-control" placeholder="搜尋名稱、地址、介紹或特色"
-                        value="{{ request('keyword') }}">
+                    <input type="text" id="keyword" class="form-control" placeholder="搜尋名稱、地址、介紹或特色">
                 </div>
 
                 {{-- 按鈕 --}}
                 <div class="col-md-2 d-flex align-items-end">
 
-                    <button type="submit" class="btn btn-primary w-100">
+                    <button type="button" class="btn btn-primary w-100" id="searchBtn">
                         搜尋
                     </button>
 
@@ -49,11 +44,11 @@
                         城市／地區
                     </label>
 
-                    <select id="city" name="city" class="form-select" onchange="this.form.submit()">
+                    <select id="city" class="form-select">
                         <option value="">全部城市</option>
 
                         @foreach ($cities as $city)
-                            <option value="{{ $city }}" {{ request('city') == $city ? 'selected' : '' }}>
+                            <option value="{{ $city }}">
                                 {{ $city }}
                             </option>
                         @endforeach
@@ -61,19 +56,17 @@
                     </select>
                 </div>
 
-
                 {{-- 分類 --}}
                 <div class="col-md-5">
                     <label for="category_id" class="form-label">
                         景點分類
                     </label>
 
-                    <select id="category_id" name="category_id" class="form-select" onchange="this.form.submit()">
+                    <select id="category_id" class="form-select">
                         <option value="">全部分類</option>
 
                         @foreach ($categories as $category)
-                            <option value="{{ $category->id }}"
-                                {{ request('category_id') == $category->id ? 'selected' : '' }}>
+                            <option value="{{ $category->id }}">
                                 {{ $category->name }}
                             </option>
                         @endforeach
@@ -84,23 +77,23 @@
                 {{-- 排序欄位 --}}
                 <div class="col-md-5 mb-3">
                     <label for="sort" class="form-label">
-                        排序欄位
+                        排序方式
                     </label>
 
-                    <select id="sort" name="sort" class="form-select" onchange="this.form.submit()">
-                        <option value="created_at" {{ request('sort', 'created_at') == 'created_at' ? 'selected' : '' }}>
+                    <select id="sort" class="form-select">
+                        <option value="created_at" selected>
                             建立時間
                         </option>
 
-                        <option value="name" {{ request('sort') == 'name' ? 'selected' : '' }}>
+                        <option value="name">
                             景點名稱
                         </option>
 
-                        <option value="city" {{ request('sort') == 'city' ? 'selected' : '' }}>
+                        <option value="city">
                             城市
                         </option>
 
-                        <option value="category" {{ request('sort') == 'category' ? 'selected' : '' }}>
+                        <option value="category">
                             分類
                         </option>
                     </select>
@@ -112,142 +105,423 @@
                         排序方向
                     </label>
 
-                    <select id="direction" name="direction" class="form-select" onchange="this.form.submit()">
-                        <option value="desc" {{ request('direction', 'desc') == 'desc' ? 'selected' : '' }}>
-                            降冪
+                    <select id="direction" class="form-select">
+                        <option value="asc">
+                            正序
                         </option>
 
-                        <option value="asc" {{ request('direction') == 'asc' ? 'selected' : '' }}>
-                            升冪
+                        <option value="desc" selected>
+                            倒序
                         </option>
                     </select>
                 </div>
 
+                {{-- 每頁顯示 --}}
                 <div class="col-md-4">
                     <label for="per_page" class="form-label">
                         每頁顯示
                     </label>
 
-                    <select id="per_page" name="per_page" class="form-select" onchange="this.form.submit()">
-                        <option value="12" {{ request('per_page', 12) == 12 ? 'selected' : '' }}>
+                    <select id="per_page" class="form-select">
+                        <option value="6" selected>
+                            6 筆
+                        </option>
+
+                        <option value="9">
+                            9 筆
+                        </option>
+
+                        <option value="12">
                             12 筆
                         </option>
 
-                        <option value="24" {{ request('per_page') == 24 ? 'selected' : '' }}>
-                            24 筆
-                        </option>
-
-                        <option value="36" {{ request('per_page') == 36 ? 'selected' : '' }}>
-                            36 筆
-                        </option>
-
-                        <option value="48" {{ request('per_page') == 48 ? 'selected' : '' }}>
-                            48 筆
+                        <option value="18">
+                            18 筆
                         </option>
                     </select>
                 </div>
 
             </div>
 
-        </form>
+        </div>
+
 
         {{-- 景點列表 --}}
-        <div class="row g-4">
+        <div id="attractionsList" class="row g-4 attraction-list">
 
-            @forelse ($attractions as $attraction)
-                <div class="col-md-6 col-lg-4">
+            <div class="col-12 text-center">
+                <p>景點資料載入中...</p>
+            </div>
 
-                    <div class="card h-100 shadow-sm">
+        </div>
 
-                        {{-- 景點圖片 --}}
-                        @if ($attraction->image)
-                            <img src="{{ $attraction->image }}" class="card-img-top" alt="{{ $attraction->name }}"
-                                style="height: 220px; object-fit: cover;">
-                        @else
-                            <div class="bg-light d-flex align-items-center justify-content-center" style="height: 220px;">
-                                <span class="text-muted">
-                                    暫無圖片
-                                </span>
-                            </div>
-                        @endif
-
-
-                        <div class="card-body d-flex flex-column">
-
-                            {{-- 景點名稱 --}}
-                            <h5 class="card-title">
-                                {{ $attraction->name }}
-                            </h5>
-
-
-                            {{-- 城市與鄉鎮 --}}
-                            <p class="text-muted mb-2">
-
-                                {{ $attraction->city }}
-
-                                @if ($attraction->town)
-                                    {{ $attraction->town }}
-                                @endif
-
-                            </p>
-
-
-                            {{-- 分類 --}}
-                            @if ($attraction->category)
-                                <div class="mb-3">
-
-                                    <span class="badge bg-success">
-                                        {{ $attraction->category->name }}
-                                    </span>
-
-                                </div>
-                            @endif
-
-
-                            {{-- 景點介紹 --}}
-                            <p class="card-text">
-
-                                {{ Str::limit($attraction->description ?? '未提供介紹', 100) }}
-
-                            </p>
-
-
-                            {{-- 詳細資訊按鈕 --}}
-                            <div class="mt-auto">
-
-                                <a href="{{ url('/attractions/' . $attraction->id) }}" class="btn btn-success">
-                                    查看詳細資訊
-                                </a>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            @empty
-
-                {{-- 沒有資料 --}}
-                <div class="col-12">
-
-                    <div class="alert alert-warning">
-                        目前沒有景點資料。
-                    </div>
-
-                </div>
-            @endforelse
-
-            {{-- 分頁 --}}
-            @if ($attractions->hasPages())
-                <div class="mt-4 d-flex justify-content-center">
-                    {{ $attractions->links() }}
-                </div>
-            @endif
-
+        <div class="attraction-pagination" id="pagination">
+            <p>頁面載入中...</p>
         </div>
 
     </div>
 
 @endsection
+
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+
+            const urlParams = new URLSearchParams(window.location.search);
+
+            const categoryId = urlParams.get('category_id');
+
+            if (categoryId) {
+
+                $('#category_id').val(categoryId);
+
+            }
+
+            loadAttractions(1);
+
+        });
+
+        $('#searchBtn').on('click', function() {
+
+            loadAttractions(1);
+
+        });
+
+        $('#city').on('change', function() {
+
+            loadAttractions(1);
+
+        });
+
+        $('#category_id').on('change', function() {
+
+            loadAttractions(1);
+
+        });
+
+        $('#sort').on('change', function() {
+
+            loadAttractions(1);
+
+        });
+
+        $('#direction').on('change', function() {
+
+            loadAttractions(1);
+
+        });
+
+        $('#per_page').on('change', function() {
+
+            loadAttractions(1);
+
+        });
+
+        $(document).on('click', '.pagination-link', function(e) {
+
+            e.preventDefault();
+
+            const page = $(this).data('page');
+
+            loadAttractions(page);
+
+        });
+
+        function loadAttractions(page = 1) {
+
+            const params = {
+                keyword: $('#keyword').val(),
+                city: $('#city').val(),
+                category_id: $('#category_id').val(),
+                sort: $('#sort').val(),
+                direction: $('#direction').val(),
+                per_page: $('#per_page').val(),
+                page: page
+            };
+
+            axios.get('/api/attractions', {
+                    params: params
+                })
+                .then(function(response) {
+
+                    const result = response.data.data;
+                    const attractions = result.data;
+
+                    let html = '';
+
+                    if (attractions.length === 0) {
+
+                        html = `
+                            <div class="col-12">
+
+                                <div class="alert alert-warning">
+                                    目前沒有景點資料。
+                                </div>
+
+                            </div>
+                        `;
+
+                    } else {
+
+                        $.each(attractions, function(index, attraction) {
+
+                            let description = attraction.description ?? '未提供介紹';
+
+                            // 簡介最多顯示約 60 字
+                            if (description.length > 60) {
+                                description = description.substring(0, 60) + '...';
+                            }
+
+
+                            html += `
+        <div class="col-md-6 col-lg-4">
+
+            <div class="attraction-card">
+
+                ${
+                    attraction.image
+                    ? `
+                                                    <img
+                                                        src="${attraction.image}"
+                                                        class="attraction-card-image"
+                                                        alt="${attraction.name}">
+                                                `
+                    : `
+                                                    <div class="attraction-card-no-image">
+                                                        <span>
+                                                            暫無圖片
+                                                        </span>
+                                                    </div>
+                                                `
+                }
+
+
+                <div class="attraction-card-body">
+
+                    <h5 class="attraction-card-title">
+                        ${attraction.name}
+                    </h5>
+
+
+                    <p class="attraction-card-location">
+
+                        ${attraction.city ?? ''}
+
+                        ${attraction.town
+                            ? `${attraction.town}`
+                            : ''
+                        }
+
+                    </p>
+
+
+                    ${
+                        attraction.category
+                        ? `
+                                                        <span class="attraction-card-category">
+                                                            ${attraction.category.name}
+                                                        </span>
+                                                    `
+                        : ''
+                    }
+
+
+                    <p class="attraction-card-description">
+                        ${description}
+                    </p>
+
+
+                    <div class="mt-auto">
+
+                        <a
+                            href="/attractions/${attraction.id}"
+                            class="btn btn-success attraction-card-button">
+
+                            查看詳細資訊
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    `;
+
+                        });
+
+                    }
+
+                    $('#attractionsList').html(html);
+
+                    renderPagination(result);
+
+                })
+                .catch(function(error) {
+
+                    console.error(error);
+
+                    $('#attractionsList').html(
+                        `<div class="col-12">
+                            <div class="alert alert-danger">
+                                景點資料載入失敗
+                            </div>
+                        </div>`
+                    );
+
+                });
+
+        }
+
+        function renderPagination(result) {
+
+            let html = '';
+
+            if (result.last_page <= 1) {
+                $('#pagination').html('');
+                return;
+            }
+
+
+            // 上一頁
+            if (result.current_page > 1) {
+
+                html += `
+            <li class="page-item">
+                <a class="page-link pagination-link"
+                   href="#"
+                   data-page="${result.current_page - 1}">
+                    上一頁
+                </a>
+            </li>
+        `;
+
+            }
+
+
+            // 第一頁
+            html += `
+        <li class="page-item ${result.current_page === 1 ? 'active' : ''}">
+            <a class="page-link pagination-link"
+               href="#"
+               data-page="1">
+                1
+            </a>
+        </li>
+    `;
+
+
+            // 決定顯示範圍
+            let pageRange = 1;
+
+            if (window.innerWidth >= 1200) {
+
+                pageRange = 3;
+
+            } else if (window.innerWidth >= 768) {
+
+                pageRange = 2;
+
+            } else {
+
+                pageRange = 1;
+
+            }
+
+
+            let startPage = Math.max(2, result.current_page - pageRange);
+
+            let endPage = Math.min(
+                result.last_page - 1,
+                result.current_page + pageRange
+            );
+
+            // 第一頁與中間頁碼之間
+            if (startPage > 2) {
+
+                html += `
+            <li class="page-item disabled">
+                <span class="page-link">
+                    ...
+                </span>
+            </li>
+        `;
+
+            }
+
+
+            // 中間頁碼
+            for (let page = startPage; page <= endPage; page++) {
+
+                html += `
+            <li class="page-item ${page === result.current_page ? 'active' : ''}">
+                <a class="page-link pagination-link"
+                   href="#"
+                   data-page="${page}">
+                    ${page}
+                </a>
+            </li>
+        `;
+
+            }
+
+
+            // 中間頁碼與最後一頁之間
+            if (endPage < result.last_page - 1) {
+
+                html += `
+            <li class="page-item disabled">
+                <span class="page-link">
+                    ...
+                </span>
+            </li>
+        `;
+
+            }
+
+
+            // 最後一頁
+            if (result.last_page > 1) {
+
+                html += `
+            <li class="page-item ${result.current_page === result.last_page ? 'active' : ''}">
+                <a class="page-link pagination-link"
+                   href="#"
+                   data-page="${result.last_page}">
+                    ${result.last_page}
+                </a>
+            </li>
+        `;
+
+            }
+
+
+            // 下一頁
+            if (result.current_page < result.last_page) {
+
+                html += `
+            <li class="page-item">
+                <a class="page-link pagination-link"
+                   href="#"
+                   data-page="${result.current_page + 1}">
+                    下一頁
+                </a>
+            </li>
+        `;
+
+            }
+
+
+            $('#pagination').html(`
+        <nav aria-label="景點分頁">
+            <ul class="pagination justify-content-center flex-wrap">
+                ${html}
+            </ul>
+        </nav>
+    `);
+
+        }
+    </script>
+@endpush

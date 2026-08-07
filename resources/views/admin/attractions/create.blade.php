@@ -15,10 +15,6 @@
                 新增景點
             </h1>
 
-            <p class="text-muted">
-                建立新的旅遊景點資料。
-            </p>
-
         </div>
 
         {{-- 新增表單 --}}
@@ -26,10 +22,7 @@
 
             <div class="card-body">
 
-                <form action="/admin/attractions" method="POST" id="attractionForm">
-
-                    @csrf
-
+                <form id="attractionForm">
 
                     {{-- 景點名稱 --}}
                     <div class="mb-3">
@@ -178,7 +171,6 @@
                             新增景點
                         </button>
 
-
                         <a href="/admin/attractions" class="btn btn-secondary">
                             取消
                         </a>
@@ -198,137 +190,6 @@
 @push('scripts')
     <script>
         $(document).ready(function() {
-
-            // ==============================
-            // 欄位驗證函式
-            // ==============================
-
-            function validateName() {
-
-                if ($('#name').val().trim() === '') {
-
-                    $('#nameError').text('請輸入景點名稱。');
-
-                    return false;
-
-                }
-
-                $('#nameError').text('');
-
-                return true;
-
-            }
-
-
-            function validateCategory() {
-
-                if ($('#category_id').val() === '') {
-
-                    $('#categoryIdError').text('請選擇景點分類。');
-
-                    return false;
-
-                }
-
-                $('#categoryIdError').text('');
-
-                return true;
-
-            }
-
-
-            function validateCity() {
-
-                if ($('#city').val().trim() === '') {
-
-                    $('#cityError').text('請輸入城市或地區。');
-
-                    return false;
-
-                }
-
-                $('#cityError').text('');
-
-                return true;
-
-            }
-
-
-            function validateTown() {
-
-                if ($('#town').val().trim() === '') {
-
-                    $('#townError').text('請輸入鄉鎮或地區。');
-
-                    return false;
-
-                }
-
-                $('#townError').text('');
-
-                return true;
-
-            }
-
-
-            function validateAddress() {
-
-                if ($('#address').val().trim() === '') {
-
-                    $('#addressError').text('請輸入景點地址。');
-
-                    return false;
-
-                }
-
-                $('#addressError').text('');
-
-                return true;
-
-            }
-
-
-            function validateImage() {
-
-                if ($('#image').val().trim() === '') {
-
-                    $('#imageError').text('請輸入圖片網址。');
-
-                    return false;
-
-                }
-
-                if (!$('#image')[0].checkValidity()) {
-
-                    $('#imageError').text('請輸入有效的圖片網址。');
-
-                    return false;
-
-                }
-
-                $('#imageError').text('');
-
-                return true;
-
-            }
-
-
-            function validateDescription() {
-
-                if ($('#description').val().trim() === '') {
-
-                    $('#descriptionError').text('請輸入景點介紹。');
-
-                    return false;
-
-                }
-
-                $('#descriptionError').text('');
-
-                return true;
-
-            }
-
 
             // ==============================
             // 即時監聽
@@ -389,6 +250,8 @@
 
             $('#attractionForm').on('submit', function(event) {
 
+                event.preventDefault();
+
                 const isNameValid = validateName();
 
                 const isCategoryValid = validateCategory();
@@ -414,8 +277,6 @@
                     !isDescriptionValid
                 ) {
 
-                    event.preventDefault();
-
                     Swal.fire({
                         icon: 'warning',
                         title: '資料輸入有誤',
@@ -423,22 +284,210 @@
                         confirmButtonText: '確定'
                     });
 
+                    return;
+
                 }
+
+                const data = {
+
+                    category_id: $('#category_id').val(),
+
+                    name: $('#name').val(),
+
+                    city: $('#city').val(),
+
+                    town: $('#town').val(),
+
+                    address: $('#address').val(),
+
+                    image: $('#image').val(),
+
+                    description: $('#description').val(),
+
+                    feature: $('#feature').val(),
+
+                    website: $('#website').val()
+
+                };
+
+
+                axios.post('/api/attractions', data)
+
+                    .then(function(response) {
+
+                        console.log(response.data);
+
+                        Swal.fire({
+                                icon: 'success',
+                                title: '新增成功',
+                                text: '景點新增成功。',
+                                confirmButtonText: '確定'
+                            })
+                            .then(function() {
+
+                                window.location.href = '/admin/attractions';
+
+                            });
+
+                    })
+
+                    .catch(function(error) {
+
+                        console.error(error);
+
+                        // Laravel Validation
+                        if (error.response && error.response.status === 422) {
+
+                            Swal.fire({
+                                icon: 'warning',
+                                title: '資料驗證失敗',
+                                text: '請確認輸入的資料是否正確。',
+                                confirmButtonText: '確定'
+                            });
+
+                        }
+
+                        Swal.fire({
+                            icon: 'error',
+                            title: '新增失敗',
+                            text: '景點新增失敗，請稍後再試。',
+                            confirmButtonText: '確定'
+                        });
+
+                    });
 
             });
 
         });
-    </script>
 
-    {{-- Laravel Validation 錯誤 --}}
-    @if ($errors->any())
-        <script>
-            Swal.fire({
-                icon: 'error',
-                title: '資料輸入有誤',
-                text: '請確認表單欄位是否正確填寫。',
-                confirmButtonText: '確定'
-            });
-        </script>
-    @endif
+        // ==============================
+        // 欄位驗證函式
+        // ==============================
+
+        function validateName() {
+
+            if ($('#name').val().trim() === '') {
+
+                $('#nameError').text('請輸入景點名稱。');
+
+                return false;
+
+            }
+
+            $('#nameError').text('');
+
+            return true;
+
+        }
+
+
+        function validateCategory() {
+
+            if ($('#category_id').val() === '') {
+
+                $('#categoryIdError').text('請選擇景點分類。');
+
+                return false;
+
+            }
+
+            $('#categoryIdError').text('');
+
+            return true;
+
+        }
+
+
+        function validateCity() {
+
+            if ($('#city').val().trim() === '') {
+
+                $('#cityError').text('請輸入城市或地區。');
+
+                return false;
+
+            }
+
+            $('#cityError').text('');
+
+            return true;
+
+        }
+
+
+        function validateTown() {
+
+            if ($('#town').val().trim() === '') {
+
+                $('#townError').text('請輸入鄉鎮或地區。');
+
+                return false;
+
+            }
+
+            $('#townError').text('');
+
+            return true;
+
+        }
+
+
+        function validateAddress() {
+
+            if ($('#address').val().trim() === '') {
+
+                $('#addressError').text('請輸入景點地址。');
+
+                return false;
+
+            }
+
+            $('#addressError').text('');
+
+            return true;
+
+        }
+
+
+        function validateImage() {
+
+            if ($('#image').val().trim() === '') {
+
+                $('#imageError').text('請輸入圖片網址。');
+
+                return false;
+
+            }
+
+            if (!$('#image')[0].checkValidity()) {
+
+                $('#imageError').text('請輸入有效的圖片網址。');
+
+                return false;
+
+            }
+
+            $('#imageError').text('');
+
+            return true;
+
+        }
+
+
+        function validateDescription() {
+
+            if ($('#description').val().trim() === '') {
+
+                $('#descriptionError').text('請輸入景點介紹。');
+
+                return false;
+
+            }
+
+            $('#descriptionError').text('');
+
+            return true;
+
+        }
+    </script>
 @endpush

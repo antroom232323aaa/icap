@@ -1,0 +1,1769 @@
+/* ========================================
+   全站基礎設定
+======================================== */
+
+:root {
+    /* ========================================
+       全站色彩
+    ======================================== */
+
+    --site-green: #4f7f52;
+    --site-green-dark: #3f6842;
+
+    --site-green-light: #eaf2e9;
+
+    /* Navbar */
+    --site-navbar-bg: #f1f5ed;
+    --site-navbar-hover: #d8e7d5;
+
+    /* 全站背景 */
+    --site-bg: #faf9f5;
+
+    /* 文字 */
+    --site-text: #343a40;
+    --site-muted: #6c757d;
+
+
+    /* ========================================
+       全站元件
+    ======================================== */
+
+    --site-radius: 12px;
+    --site-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+
+/* ========================================
+   Body
+======================================== */
+
+body {
+    background-color: var(--site-bg);
+    color: var(--site-text);
+
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        "Noto Sans TC",
+        "Microsoft JhengHei",
+        sans-serif;
+
+    line-height: 1.7;
+}
+
+
+/* ========================================
+   標題
+======================================== */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--site-text);
+
+    font-weight: 700;
+
+    line-height: 1.4;
+}
+
+
+/* ========================================
+   連結
+======================================== */
+
+a {
+    color: var(--site-green);
+
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--site-green-dark);
+}
+
+
+/* ========================================
+   Section 基礎間距
+======================================== */
+
+section {
+    position: relative;
+}
+
+
+/* ========================================
+   主要按鈕
+======================================== */
+
+.btn {
+    min-height: 40px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 8px;
+
+    font-weight: 600;
+}
+
+
+/* ========================================
+   Bootstrap Success 顏色統一
+======================================== */
+
+.btn-success {
+    background-color: var(--site-green);
+
+    border-color: var(--site-green);
+}
+
+.btn-success:hover,
+.btn-success:focus {
+    background-color: var(--site-green-dark);
+
+    border-color: var(--site-green-dark);
+}
+
+
+/* ========================================
+   Outline Success
+======================================== */
+
+.btn-outline-success {
+    color: var(--site-green);
+
+    border-color: var(--site-green);
+}
+
+.btn-outline-success:hover,
+.btn-outline-success:focus {
+    color: #fff;
+
+    background-color: var(--site-green);
+
+    border-color: var(--site-green);
+}
+
+
+/* ========================================
+   卡片基礎
+======================================== */
+
+.card {
+    border: 0;
+
+    border-radius: var(--site-radius);
+
+    box-shadow: var(--site-shadow);
+
+    overflow: hidden;
+}
+
+
+/* ========================================
+   表單
+======================================== */
+
+.form-control,
+.form-select {
+    min-height: 40px;
+
+    border-radius: 8px;
+}
+
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--site-green);
+
+    box-shadow: 0 0 0 0.2rem rgba(79, 127, 82, 0.15);
+}
+
+
+/* ========================================
+   圖片
+======================================== */
+
+img {
+    max-width: 100%;
+
+    height: auto;
+}
+
+
+/* ========================================
+   Badge
+======================================== */
+
+.badge.bg-success {
+    background-color: var(--site-green) !important;
+}
+
+
+/* ========================================
+   小螢幕
+======================================== */
+
+@media (max-width: 768px) {
+
+    body {
+        font-size: 15px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.7rem;
+    }
+
+    h3 {
+        font-size: 1.4rem;
+    }
+
+}
+
+
+/* ========================================
+   Navbar
+======================================== */
+
+.site-navbar {
+    background-color: var(--site-navbar-bg);
+
+    min-height: 64px;
+
+    border-bottom: 1px solid rgba(79, 127, 82, 0.12);
+
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+
+    position: relative;
+    z-index: 1000;
+}
+
+
+/* Logo / 網站名稱 */
+
+.site-navbar-brand {
+    color: var(--site-green) !important;
+
+    font-size: 1.25rem;
+
+    font-weight: 700;
+
+    letter-spacing: 0.02em;
+}
+
+.site-navbar-brand:hover {
+    color: var(--site-green-dark) !important;
+}
+
+
+/* 導覽連結 */
+
+.site-nav-link {
+    color: var(--site-text) !important;
+
+    font-weight: 600;
+
+    padding: 0.65rem 0.9rem !important;
+
+    border-radius: 8px;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
+}
+
+
+.site-nav-link:hover {
+    color: var(--site-green-dark) !important;
+
+    background-color: var(--site-navbar-hover);
+}
+
+
+/* Bootstrap Navbar hamburger */
+
+.site-navbar .navbar-toggler {
+    min-width: 40px;
+
+    min-height: 40px;
+
+    border-radius: 8px;
+
+    border-color: rgba(79, 127, 82, 0.35);
+}
+
+
+.site-navbar .navbar-toggler:focus {
+    box-shadow: 0 0 0 0.2rem rgba(79, 127, 82, 0.15);
+}
+
+@media (max-width: 992px) {
+
+    .site-navbar {
+        min-height: 60px;
+    }
+
+    .site-navbar .navbar-collapse {
+        padding: 0.75rem 0;
+    }
+
+    .site-nav-link {
+        padding: 0.75rem 0.9rem !important;
+    }
+
+}
+
+
+/* ========================================
+   首頁 Hero / Banner
+======================================== */
+
+.site-hero {
+    position: relative;
+
+    width: 100%;
+
+    height: 500px;
+
+    overflow: hidden;
+}
+
+
+/* Banner 圖片 */
+
+.site-hero-image {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+    object-position: center;
+}
+
+
+/* 文字區域 */
+
+.site-hero-overlay {
+    position: absolute;
+
+    top: 50%;
+    left: 0;
+
+    width: 100%;
+
+    transform: translateY(-50%);
+
+    z-index: 2;
+}
+
+
+/* 標題 */
+
+.site-hero-title {
+    margin: 0;
+
+    color: var(--site-green-dark);
+
+    font-size: clamp(2.2rem, 5vw, 4rem);
+
+    font-weight: 700;
+
+    line-height: 1.2;
+}
+
+
+/* 描述 */
+
+.site-hero-text {
+    max-width: 650px;
+
+    margin-top: 1rem;
+    margin-bottom: 0;
+
+    color: var(--site-green-dark);
+
+    font-size: clamp(1rem, 2vw, 1.25rem);
+
+    line-height: 1.7;
+
+    font-weight: 500;
+}
+
+
+/* 按鈕區 */
+
+.site-hero-actions {
+    margin-top: 1.5rem;
+}
+
+@media (max-width: 768px) {
+
+    .site-hero {
+        height: 460px;
+    }
+
+
+    .site-hero-overlay {
+        top: 50%;
+    }
+
+
+    .site-hero-title {
+        font-size: 2.2rem;
+    }
+
+
+    .site-hero-text {
+        max-width: 90%;
+
+        font-size: 1rem;
+    }
+
+
+    .site-hero-actions {
+        display: flex;
+
+        flex-wrap: wrap;
+
+        gap: 0.75rem;
+    }
+
+
+    .site-hero-actions .btn {
+        margin-right: 0 !important;
+    }
+
+}
+
+
+/* ========================================
+   精選景點 Carousel
+======================================== */
+
+.site-featured-section {
+    padding: 5rem 0;
+
+    background-color: var(--site-green-light);
+}
+
+
+/* Carousel 本體 */
+
+.site-carousel {
+    position: relative;
+
+    overflow: hidden;
+
+    border-radius: var(--site-radius);
+
+    box-shadow: var(--site-shadow);
+
+    background-color: #ffffff;
+}
+
+
+/* Carousel 圖片 */
+
+.site-carousel .carousel-image {
+    display: block;
+
+    width: 100%;
+    height: 360px;
+
+    object-fit: cover;
+}
+
+
+/* ========================================
+   左右箭頭
+======================================== */
+
+.site-carousel .carousel-control-prev,
+.site-carousel .carousel-control-next {
+    width: 14%;
+
+    opacity: 0.85;
+}
+
+
+.site-carousel .carousel-control-prev:hover,
+.site-carousel .carousel-control-next:hover {
+    opacity: 1;
+}
+
+
+/* 讓箭頭區域更容易點擊 */
+
+.site-carousel .carousel-control-prev-icon,
+.site-carousel .carousel-control-next-icon {
+    width: 2rem;
+    height: 2rem;
+
+    filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.45));
+}
+
+
+/* ========================================
+   Carousel 指示點
+======================================== */
+
+.site-carousel-indicators {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-height: 44px;
+
+    padding: 0.75rem 1rem;
+
+    background-color: var(--site-green-light);
+
+}
+
+
+/* 指示點 */
+
+.site-carousel-indicators .carousel-indicator-dot {
+    display: block;
+
+    width: 9px;
+    height: 9px;
+
+    margin: 0 5px;
+
+    border-radius: 50%;
+
+    background-color: #b8c9b5;
+
+    transition:
+        transform 0.2s ease,
+        background-color 0.2s ease;
+}
+
+
+.site-carousel-indicators .carousel-indicator-dot.active {
+    background-color: var(--site-green);
+
+    transform: scale(1.3);
+}
+
+
+/* 目前所在位置 */
+
+.site-carousel-indicators button.active {
+    background-color: var(--site-green);
+
+    transform: scale(1.3);
+}
+
+
+/* Hover */
+
+.site-carousel-indicators button:hover {
+    background-color: var(--site-green-dark);
+
+    transform: scale(1.2);
+}
+
+
+/* ========================================
+   手機版
+======================================== */
+
+@media (max-width: 768px) {
+
+    .site-featured-section {
+        padding: 3.5rem 0;
+    }
+
+
+    .site-carousel .carousel-item img {
+        height: 300px;
+    }
+
+
+    .site-carousel .carousel-control-prev,
+    .site-carousel .carousel-control-next {
+        width: 18%;
+    }
+
+
+    .site-carousel .carousel-control-prev-icon,
+    .site-carousel .carousel-control-next-icon {
+        width: 1.6rem;
+        height: 1.6rem;
+    }
+
+
+    .site-carousel .carousel-indicators {
+        margin-bottom: 0.75rem;
+    }
+
+
+    .site-carousel .carousel-indicators [data-bs-target] {
+        width: 7px;
+        height: 7px;
+
+        margin-right: 4px;
+        margin-left: 4px;
+    }
+
+}
+
+
+/* ========================================
+   農村美食 / 農村住宿 S 型區塊
+======================================== */
+
+.site-category-section {
+    padding: 5rem 0;
+
+    background-color: var(--site-bg);
+}
+
+
+/* 每一個分類區塊 */
+
+.site-category-row {
+    min-height: 360px;
+
+    margin-bottom: 5rem;
+}
+
+
+/* 最後一個區塊不要額外留太多空白 */
+
+.site-category-row:last-child {
+    margin-bottom: 0;
+}
+
+
+/* 圖片 */
+
+.site-category-image {
+    display: block;
+
+    width: 100%;
+    height: 360px;
+
+    object-fit: cover;
+
+    border-radius: var(--site-radius);
+
+    box-shadow: var(--site-shadow);
+}
+
+
+/* 文字區 */
+
+.site-category-content {
+    padding: 2rem;
+}
+
+
+.site-category-content h3 {
+    color: var(--site-green-dark);
+
+    font-size: 2rem;
+
+    font-weight: 700;
+}
+
+
+.site-category-content p {
+    color: var(--site-muted);
+
+    line-height: 1.8;
+}
+
+/* ========================================
+   手機版
+======================================== */
+
+@media (max-width: 767.98px) {
+
+    .site-category-section {
+        padding: 3.5rem 0;
+    }
+
+
+    .site-category-row {
+        min-height: auto;
+
+        margin-bottom: 4rem;
+    }
+
+
+    .site-category-row:last-child {
+        margin-bottom: 0;
+    }
+
+
+    .site-category-image {
+        height: 300px;
+    }
+
+
+    .site-category-content {
+        padding: 0.5rem;
+    }
+
+
+    .site-category-content h3 {
+        font-size: 1.7rem;
+    }
+
+
+    .site-category-content p {
+        line-height: 1.7;
+    }
+
+}
+
+
+/* ========================================
+   景點列表頁
+======================================== */
+
+.attraction-page {
+    padding-top: 4rem;
+    padding-bottom: 5rem;
+}
+
+
+/* ========================================
+   頁面標題
+======================================== */
+
+.attraction-page-header {
+    margin-bottom: 2.5rem;
+}
+
+
+.attraction-page-header h1 {
+    margin-bottom: 0.75rem;
+
+    color: var(--site-green-dark);
+
+    font-size: 2.4rem;
+    font-weight: 700;
+}
+
+/* ========================================
+   搜尋 / 篩選區
+======================================== */
+
+.attraction-filter-panel {
+    margin-bottom: 3rem;
+
+    padding: 1.75rem;
+
+    background-color: var(--site-green-light);
+
+    border: 1px solid rgba(79, 127, 82, 0.12);
+
+    border-radius: var(--site-radius);
+
+    box-shadow: var(--site-shadow);
+}
+
+
+/* Label */
+
+.attraction-filter-panel .form-label {
+    margin-bottom: 0.5rem;
+
+    color: var(--site-green-dark);
+
+    font-weight: 600;
+}
+
+
+/* Input / Select */
+
+.attraction-filter-panel .form-control,
+.attraction-filter-panel .form-select {
+    min-height: 46px;
+
+    border: 1px solid rgba(79, 127, 82, 0.2);
+
+    border-radius: 0.65rem;
+
+    background-color: #ffffff;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.attraction-filter-panel .form-control:focus,
+.attraction-filter-panel .form-select:focus {
+    border-color: var(--site-green);
+
+    box-shadow: 0 0 0 0.2rem rgba(79, 127, 82, 0.15);
+}
+
+
+/* 搜尋按鈕 */
+
+.attraction-filter-panel #searchBtn {
+    min-height: 46px;
+
+    border: 0;
+
+    border-radius: 0.65rem;
+
+    font-weight: 600;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.attraction-filter-panel #searchBtn:hover {
+    transform: translateY(-1px);
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+
+/* ========================================
+   景點列表
+======================================== */
+
+.attraction-list {
+    margin-top: 0.5rem;
+}
+
+
+/* ========================================
+   景點 Card
+   注意：這些 class 等一下會加到 JS
+======================================== */
+
+.attraction-card {
+    height: 100%;
+
+    overflow: hidden;
+
+    background-color: #ffffff;
+
+    border: 0;
+
+    border-radius: var(--site-radius);
+
+    box-shadow: var(--site-shadow);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+.attraction-card:hover {
+    transform: translateY(-5px);
+
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+}
+
+
+/* 圖片 */
+
+.attraction-card-image {
+    display: block;
+
+    width: 100%;
+    height: 220px;
+
+    object-fit: cover;
+
+    transition: transform 0.35s ease;
+}
+
+
+.attraction-card:hover .attraction-card-image {
+    transform: scale(1.03);
+}
+
+
+/* Card 內容 */
+
+.attraction-card-body {
+    display: flex;
+
+    flex-direction: column;
+
+    padding: 1.4rem;
+}
+
+
+/* 名稱 */
+
+.attraction-card-title {
+    margin-bottom: 0.5rem;
+
+    color: var(--site-green-dark);
+
+    font-size: 1.25rem;
+    font-weight: 700;
+
+    line-height: 1.4;
+}
+
+
+/* 地區 */
+
+.attraction-card-location {
+    margin-bottom: 0.75rem;
+
+    color: var(--site-muted);
+
+    font-size: 0.9rem;
+}
+
+
+/* 分類 Badge */
+
+.attraction-card-category {
+    display: inline-block;
+
+    width: fit-content;
+
+    margin-bottom: 0.85rem;
+
+    padding: 0.35rem 0.7rem;
+
+    color: var(--site-green-dark);
+
+    background-color: var(--site-green-light);
+
+    border-radius: 999px;
+
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+
+/* 簡介 */
+
+.attraction-card-description {
+    display: -webkit-box;
+
+    margin-bottom: 1.25rem;
+
+    overflow: hidden;
+
+    color: var(--site-muted);
+
+    line-height: 1.7;
+
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+}
+
+
+/* 查看詳細資訊 */
+
+.attraction-card-button {
+    margin-top: auto;
+
+    width: fit-content;
+
+    border-radius: 0.6rem;
+
+    font-weight: 600;
+}
+
+
+/* ========================================
+   無圖片
+======================================== */
+
+.attraction-card-no-image {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    height: 220px;
+
+    color: var(--site-muted);
+
+    background-color: var(--site-green-light);
+}
+
+
+/* ========================================
+   分頁
+======================================== */
+
+.attraction-pagination {
+    display: flex;
+
+    justify-content: center;
+
+    margin-top: 3rem;
+}
+
+
+.attraction-pagination .pagination {
+    margin-bottom: 0;
+}
+
+
+.attraction-pagination .page-link {
+    min-width: 40px;
+    height: 40px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 3px;
+
+    color: var(--site-green-dark);
+
+    border: 0;
+
+    border-radius: 0.6rem;
+
+    background-color: var(--site-green-light);
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.attraction-pagination .page-link:hover {
+    color: #ffffff;
+
+    background-color: var(--site-green);
+
+    transform: translateY(-1px);
+}
+
+
+.attraction-pagination .page-item.active .page-link {
+    color: #ffffff;
+
+    background-color: var(--site-green-dark);
+}
+
+
+.attraction-pagination .page-item.disabled .page-link {
+    color: #a5b1a4;
+
+    background-color: #f1f3f1;
+}
+
+
+/* ========================================
+   載入 / 無資料 / 錯誤
+======================================== */
+
+.attraction-page .alert {
+    border: 0;
+
+    border-radius: var(--site-radius);
+}
+
+
+.attraction-page .alert-warning {
+    background-color: #fff8e5;
+
+    color: #80651c;
+}
+
+
+.attraction-page .alert-danger {
+    background-color: #fcebea;
+
+    color: #8a302a;
+}
+
+
+/* ========================================
+   RWD - 平板
+======================================== */
+
+@media (max-width: 992px) {
+
+    .attraction-page {
+        padding-top: 3.5rem;
+    }
+
+
+    .attraction-page-header h1 {
+        font-size: 2.1rem;
+    }
+
+
+    .attraction-filter-panel {
+        padding: 1.5rem;
+    }
+
+
+    .attraction-card-image,
+    .attraction-card-no-image {
+        height: 210px;
+    }
+
+}
+
+
+/* ========================================
+   RWD - 手機
+======================================== */
+
+@media (max-width: 768px) {
+
+    .attraction-page {
+        padding-top: 2.5rem;
+        padding-bottom: 3.5rem;
+    }
+
+
+    .attraction-page-header {
+        margin-bottom: 2rem;
+    }
+
+
+    .attraction-page-header h1 {
+        font-size: 1.85rem;
+    }
+
+
+    .attraction-page-header p {
+        font-size: 0.95rem;
+
+        line-height: 1.7;
+    }
+
+
+    .attraction-filter-panel {
+        margin-bottom: 2.5rem;
+
+        padding: 1.25rem;
+    }
+
+
+    .attraction-filter-panel .form-control,
+    .attraction-filter-panel .form-select,
+    .attraction-filter-panel #searchBtn {
+        min-height: 44px;
+    }
+
+
+    .attraction-card-image,
+    .attraction-card-no-image {
+        height: 220px;
+    }
+
+
+    .attraction-card-body {
+        padding: 1.25rem;
+    }
+
+
+    .attraction-card-title {
+        font-size: 1.15rem;
+    }
+
+
+    .attraction-pagination {
+        margin-top: 2.5rem;
+
+        overflow-x: auto;
+
+        justify-content: flex-start;
+
+        padding-bottom: 0.5rem;
+    }
+
+}
+
+/* ========================================
+   統計頁
+======================================== */
+
+.statistics-page {
+    padding-top: 4rem;
+    padding-bottom: 5rem;
+}
+
+
+/* ========================================
+   頁面標題
+======================================== */
+
+.statistics-page-header {
+    margin-bottom: 3.5rem;
+}
+
+
+.statistics-page-header h1 {
+    margin-bottom: 0.75rem;
+
+    color: var(--site-green-dark);
+
+    font-size: 2.4rem;
+    font-weight: 700;
+}
+
+
+.statistics-page-header p {
+    margin-bottom: 0;
+
+    color: var(--site-muted);
+
+    font-size: 1.05rem;
+}
+
+
+/* ========================================
+   統計圖 Card
+======================================== */
+
+.statistics-card {
+    margin-bottom: 3rem;
+
+    padding: 1.75rem;
+
+    background-color: #ffffff;
+
+    border: 1px solid rgba(79, 127, 82, 0.12);
+
+    border-radius: var(--site-radius);
+
+    box-shadow: var(--site-shadow);
+}
+
+
+.statistics-card:last-child {
+    margin-bottom: 0;
+}
+
+
+/* 標題 */
+
+.statistics-card-header {
+    margin-bottom: 1.5rem;
+}
+
+
+.statistics-card-header h2 {
+    margin-bottom: 0;
+
+    color: var(--site-green-dark);
+
+    font-size: 1.45rem;
+    font-weight: 700;
+}
+
+
+/* Chart 區域 */
+
+.statistics-chart {
+    position: relative;
+
+    width: 100%;
+
+    height: 400px;
+}
+
+/* ========================================
+   統計頁 RWD
+======================================== */
+
+@media (max-width: 992px) {
+
+    .statistics-page {
+        padding-top: 3.5rem;
+    }
+
+
+    .statistics-page-header h1 {
+        font-size: 2.1rem;
+    }
+
+
+    .statistics-card {
+        padding: 1.5rem;
+    }
+
+
+    .statistics-card-header h2 {
+        font-size: 1.3rem;
+    }
+
+
+    .statistics-chart {
+        height: 400px;
+    }
+
+}
+
+
+@media (max-width: 768px) {
+
+    .statistics-page {
+        padding-top: 2.5rem;
+        padding-bottom: 3.5rem;
+    }
+
+
+    .statistics-page-header {
+        margin-bottom: 2.5rem;
+    }
+
+
+    .statistics-page-header h1 {
+        font-size: 1.85rem;
+    }
+
+
+    .statistics-page-header p {
+        font-size: 0.95rem;
+
+        line-height: 1.7;
+    }
+
+
+    .statistics-card {
+        margin-bottom: 2.5rem;
+
+        padding: 1.15rem;
+    }
+
+
+    .statistics-card-header {
+        margin-bottom: 1rem;
+    }
+
+
+    .statistics-card-header h2 {
+        font-size: 1.15rem;
+    }
+
+
+    .statistics-chart {
+        height: 360px;
+    }
+
+}
+
+
+/* ========================================
+   單一景點頁
+======================================== */
+
+.attraction-detail-page {
+    padding-top: 3rem;
+    padding-bottom: 5rem;
+}
+
+
+/* ========================================
+   返回按鈕
+======================================== */
+
+.attraction-detail-back {
+    margin-bottom: 1.5rem;
+}
+
+
+.attraction-back-button {
+    border-radius: var(--site-radius);
+    transition: all 0.2s ease;
+}
+
+
+.attraction-back-button:hover {
+    transform: translateX(-3px);
+}
+
+
+/* ========================================
+   景點主要 Card
+======================================== */
+
+.attraction-detail-card {
+    overflow: hidden;
+
+    background-color: #ffffff;
+
+    border: 1px solid rgba(79, 127, 82, 0.12);
+
+    border-radius: var(--site-radius);
+
+    box-shadow: var(--site-shadow);
+}
+
+
+/* ========================================
+   景點主圖片
+======================================== */
+
+.attraction-detail-image-wrapper {
+    width: 100%;
+    height: 480px;
+
+    overflow: hidden;
+
+    background-color: var(--site-light);
+}
+
+
+.attraction-detail-image {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    transition: transform 0.5s ease;
+}
+
+
+/* 滑鼠移到景點圖片時輕微放大 */
+
+.attraction-detail-card:hover .attraction-detail-image {
+    transform: scale(1.02);
+}
+
+
+/* ========================================
+   景點標題區
+======================================== */
+
+.attraction-detail-header {
+    padding: 2.25rem 2.5rem 2rem;
+
+    border-bottom: 1px solid rgba(79, 127, 82, 0.1);
+}
+
+
+.attraction-detail-category {
+    display: inline-block;
+
+    margin-bottom: 1rem;
+    padding: 0.4rem 0.85rem;
+
+    color: #ffffff;
+
+    background-color: var(--site-green);
+
+    border-radius: 999px;
+
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+
+.attraction-detail-title {
+    margin-bottom: 0.75rem;
+
+    color: var(--site-green-dark);
+
+    font-size: 2.2rem;
+    font-weight: 700;
+
+    line-height: 1.35;
+}
+
+
+.attraction-detail-location {
+    margin-bottom: 0;
+
+    color: var(--site-muted);
+
+    font-size: 1rem;
+}
+
+
+/* ========================================
+   景點內容
+======================================== */
+
+.attraction-detail-content {
+    padding: 2.5rem;
+}
+
+
+/* ========================================
+   資訊區塊
+======================================== */
+
+.attraction-detail-section {
+    margin-bottom: 2.5rem;
+}
+
+
+.attraction-detail-section:last-of-type {
+    margin-bottom: 0;
+}
+
+
+.attraction-detail-section-title {
+    position: relative;
+
+    margin-bottom: 1rem;
+    padding-left: 1rem;
+
+    color: var(--site-green-dark);
+
+    font-size: 1.35rem;
+    font-weight: 700;
+}
+
+
+/* 標題左側的小綠線 */
+
+.attraction-detail-section-title::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 0.15em;
+
+    width: 4px;
+    height: 1.1em;
+
+    background-color: var(--site-green);
+
+    border-radius: 999px;
+}
+
+
+/* ========================================
+   地址
+======================================== */
+
+.attraction-detail-address {
+    margin-bottom: 0;
+
+    color: #555555;
+
+    line-height: 1.8;
+}
+
+
+/* ========================================
+   景點特色
+======================================== */
+
+.attraction-detail-feature {
+    margin-bottom: 0;
+
+    color: #555555;
+
+    line-height: 2;
+}
+
+
+/* ========================================
+   官方網站
+======================================== */
+
+.attraction-detail-website {
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+
+    border-top: 1px solid rgba(79, 127, 82, 0.1);
+}
+
+
+.attraction-website-button {
+    min-width: 150px;
+
+    padding: 0.65rem 1.25rem;
+
+    border-radius: var(--site-radius);
+
+    transition: all 0.2s ease;
+}
+
+
+.attraction-website-button:hover {
+    transform: translateY(-2px);
+}
+
+
+/* ========================================
+   錯誤訊息
+======================================== */
+
+.attraction-detail-alert {
+    margin-bottom: 0;
+
+    border-radius: var(--site-radius);
+}
+
+
+/* ========================================
+   RWD
+======================================== */
+
+@media (max-width: 992px) {
+
+    .attraction-detail-page {
+        padding-top: 2.5rem;
+    }
+
+
+    .attraction-detail-image-wrapper {
+        height: 420px;
+    }
+
+
+    .attraction-detail-header {
+        padding: 2rem;
+    }
+
+
+    .attraction-detail-title {
+        font-size: 2rem;
+    }
+
+
+    .attraction-detail-content {
+        padding: 2rem;
+    }
+
+}
+
+
+/* ========================================
+   手機版
+======================================== */
+
+@media (max-width: 768px) {
+
+    .attraction-detail-page {
+        padding-top: 2rem;
+        padding-bottom: 3.5rem;
+    }
+
+
+    .attraction-detail-back {
+        margin-bottom: 1rem;
+    }
+
+
+    .attraction-back-button {
+        font-size: 0.9rem;
+    }
+
+
+    .attraction-detail-image-wrapper {
+        height: 280px;
+    }
+
+
+    .attraction-detail-header {
+        padding: 1.5rem;
+    }
+
+
+    .attraction-detail-category {
+        margin-bottom: 0.75rem;
+
+        padding: 0.35rem 0.7rem;
+
+        font-size: 0.8rem;
+    }
+
+
+    .attraction-detail-title {
+        font-size: 1.65rem;
+
+        line-height: 1.4;
+    }
+
+
+    .attraction-detail-location {
+        font-size: 0.9rem;
+    }
+
+
+    .attraction-detail-content {
+        padding: 1.5rem;
+    }
+
+
+    .attraction-detail-section {
+        margin-bottom: 2rem;
+    }
+
+
+    .attraction-detail-section-title {
+        font-size: 1.2rem;
+    }
+
+
+    .attraction-detail-address,
+    .attraction-detail-feature {
+        font-size: 0.95rem;
+
+        line-height: 1.9;
+    }
+
+
+    .attraction-detail-website {
+        margin-top: 2rem;
+        padding-top: 1.5rem;
+    }
+
+
+    .attraction-website-button {
+        width: 100%;
+    }
+
+}
+
+
+/* ========================================
+   超小螢幕
+======================================== */
+
+@media (max-width: 375px) {
+
+    .attraction-detail-image-wrapper {
+        height: 240px;
+    }
+
+
+    .attraction-detail-header {
+        padding: 1.25rem;
+    }
+
+
+    .attraction-detail-title {
+        font-size: 1.45rem;
+    }
+
+
+    .attraction-detail-content {
+        padding: 1.25rem;
+    }
+
+}

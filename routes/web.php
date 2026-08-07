@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AttractionController;
 use App\Http\Controllers\Admin\AdminAttractionController;
+use App\Http\Controllers\StatisticsController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -24,7 +25,7 @@ Route::get(
 );
 
 
-// 景點詳細
+// 單一景點詳細
 Route::middleware('routeId')->group(function () {
 
     Route::get(
@@ -32,6 +33,10 @@ Route::middleware('routeId')->group(function () {
         [AttractionController::class, 'show']
     );
 });
+
+
+// 景點統計
+Route::get('/statistics', [StatisticsController::class, 'index']);
 
 
 /*
@@ -50,42 +55,18 @@ Route::prefix('admin')->group(function () {
             [AdminAttractionController::class, 'index']
         );
 
-
         // 新增景點頁面
         Route::get(
             '/create',
             [AdminAttractionController::class, 'create']
         );
 
-
-        // 儲存新景點
-        Route::post(
-            '/',
-            [AdminAttractionController::class, 'store']
-        );
-
-
-        // 需要 ID 的操作
         Route::middleware('routeId')->group(function () {
 
-            // 編輯景點
+            // 編輯景點畫面
             Route::get(
                 '/edit/{id}',
                 [AdminAttractionController::class, 'edit']
-            );
-
-
-            // 更新景點
-            Route::put(
-                '/{id}',
-                [AdminAttractionController::class, 'update']
-            );
-
-
-            // 刪除景點
-            Route::delete(
-                '/{id}',
-                [AdminAttractionController::class, 'destroy']
             );
         });
     });
