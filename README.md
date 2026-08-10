@@ -76,8 +76,8 @@ AI Travel Guide 是一個以台灣農村旅遊為主題的網站，使用者可�
 - 關鍵字搜尋
 - 城市／地區篩選
 - 景點分類篩選
-- 排序欄位
-- 升冪／降冪
+- 排序依據
+- 排序方向
 - 每頁顯示筆數
 - 分頁
 
@@ -102,7 +102,7 @@ AI Travel Guide 是一個以台灣農村旅遊為主題的網站，使用者可�
 - 城市／地區
 - 地址
 - 景點特色
-- 官方網站
+- 官方網站連結按鈕
 
 ![單一景點詳細資訊](docs/images/example.png)
 
@@ -291,6 +291,8 @@ storage/app/private/data/TravelStay.json
 
 這些圖像素材實際放入首頁及相關內容區塊中，作為網站視覺設計的一部分。
 
+![生成圖片過程](docs/images/ChatGPT.png)
+
 ---
 
 ## 9. UI / RWD 設計
@@ -318,21 +320,19 @@ storage/app/private/data/TravelStay.json
 - 統計圖表
 - 景點詳細頁
 
+![768px](docs/images/768px.png)
+
+![375px](docs/images/375px.png)
+
 ---
 
 ## 10. 介面設計
 
 本專案使用figma製作首頁與景點列表頁設計稿。
 
-設計稿包含：
+figma設計稿：https://www.figma.com/design/TDaA5Wdl6IkzQxjNQO0d92/ICAP%E7%B6%B2%E9%A0%81%E6%A6%82%E7%95%A5%E8%A8%AD%E8%A8%88%E5%9C%96?node-id=0-1&t=kSioXjkoopo3xFMU-1
 
-- 導覽列
-- 首頁主視覺區
-- 景點卡片
-- 主要按鈕
-- 搜尋／篩選區
-- 內容區塊
-- AI 圖像素材
+figma流程圖：https://www.figma.com/board/mkPyn57noxRuzceZGBc0b0/ICAP%E5%B0%88%E6%A1%88%E6%B5%81%E7%A8%8B%E5%9C%96?t=kSioXjkoopo3xFMU-1
 
 ---
 
@@ -388,6 +388,13 @@ icap/
 
 ---
 
-## 14. License
+## 14. 開發者資訊
+
+姓名：林育弘
+聯絡信箱：antroom232323aaa@gmail.com
+
+---
+
+## 15. License
 
 本專案為課程／專題用途之網站作品。
