@@ -251,6 +251,9 @@ API 統一使用 JSON 回傳資料，例如：
     "code": 200
 }
 ```
+![api成功](docs/images/success.png)
+
+![api失敗](docs/images/error.png)
 
 ### API 資料傳遞方式
 
