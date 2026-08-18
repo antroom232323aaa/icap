@@ -56,4 +56,4 @@ RUN chown -R www-data:www-data \
 # Apache 對外服務
 EXPOSE 80
 
-CMD ["apache2-foreground"]
+CMD ["sh", "-c", "php artisan optimize:clear && apache2-foreground"]
